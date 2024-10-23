@@ -1,0 +1,12 @@
+<h1>{{ problem.title }}</h1>
+<p>{{ problem.description }}</p>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+{% if result %}
+    <h3>{{ result }}</h3>
+{% endif %}

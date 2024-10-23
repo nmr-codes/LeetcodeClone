@@ -1,0 +1,29 @@
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static "css/navbar.css" %}">
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <a href="/">LeetCode Clone</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Bosh sahifa</a></li>
+            <li><a href="{% url "problem_detail" %}">Muammolar</a></li>
+            <li><a href="#">Tanlovlar</a></li>
+            <li><a href="#">Yechimlar</a></li>
+            <li><a href="#">Biz haqimizda</a></li>
+        </ul>
+        <div class="auth-links">
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <a href="{% url "logout" %}" class="logout">Chiqish</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login_page' %}" class="login">Kirish</a>
+                <a href="{% url 'register' %}" class="signup">Ro'yxatdan o'tish</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+{% endblock content %}
